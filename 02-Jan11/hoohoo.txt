@@ -1,0 +1,4 @@
+
+	cout << "How are you today?" << endl;
+	return 0;
+}

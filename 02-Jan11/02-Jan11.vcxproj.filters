@@ -19,4 +19,14 @@
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="hoohoo.txt">
+      <Filter>Header Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="heehaw.hoohoo">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
