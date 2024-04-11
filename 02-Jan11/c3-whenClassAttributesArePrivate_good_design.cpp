@@ -20,10 +20,6 @@ public: // functions are public, means client code can access and call them.
 	// all attributes of Teacher. so we do not need pass a Teacher to it.
 	// we can write it as follows.
 	// as naming convection we removed changed setTeacher to set.
-	
-	// here we have 4 member functions with the same name(set).
-	// This is OK because, all functions have different signatures.
-	// This is function overloading(statis polymorphism).
 	void set(const char* subject, const char* name, int rating, int grading) {
 		strcpy(m_name, name);
 		strcpy(m_subject, subject);
