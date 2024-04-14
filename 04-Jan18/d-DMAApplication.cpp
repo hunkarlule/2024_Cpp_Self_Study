@@ -72,7 +72,7 @@ void deallocate(Name& n) {
 
 void print(const Name& n) {
 	if (n.m_name && n.m_surname) {
-		cout << *n.m_name << " " << *n.m_surname << endl;
+		cout << n.m_name << " " << n.m_surname << endl;
 	}
 	else {
 		cout << "No name!" << endl;
