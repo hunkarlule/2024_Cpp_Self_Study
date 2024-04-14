@@ -57,9 +57,7 @@ void set(Name& n, const char* name, const char* surname) {
 	else {
 		// if any of the allocations are not succesful
 		// we delete both allocations to avoid any memory leak.
-		delete[] n.m_name;
-		delete[] n.m_surname;
-		n.m_name = n.m_surname = nullptr;
+		deallocate(n);
 
 	}
 }
@@ -71,7 +69,7 @@ void deallocate(Name& n) {
 }
 
 void print(const Name& n) {
-	if (n.m_name && n.m_surname) {
+	if (n.m_name && n.m_surname && n.m_name[0] && n.m_surname[0]) {
 		cout << n.m_name << " " << n.m_surname << endl;
 	}
 	else {

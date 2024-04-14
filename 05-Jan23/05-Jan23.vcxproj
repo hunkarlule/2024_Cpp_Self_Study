@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="01-DMAApplication.cpp" />
+    <ClCompile Include="Name.cpp" />
+    <ClCompile Include="prg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Name.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
