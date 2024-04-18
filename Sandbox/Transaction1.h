@@ -7,4 +7,8 @@ struct Transaction1
 };
 
 void enter(Transaction1* tr);
-void display(const Transaction1 tr);
+void display(const Transaction1* tr);
+// Compact Solution - insert the prototype into Transaction.h
+
+void add(double*, const Transaction1*); 
+

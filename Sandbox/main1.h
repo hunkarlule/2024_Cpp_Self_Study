@@ -11,6 +11,10 @@
 // possible solutions to this porblem:
 // Forward Declaration Solution - insert the prototype into main.h
 // Compact Solution - insert the prototype into Transaction.h
-void add(double*, const Transaction1*);
+
+// Forward devleration of Transaction1 type;
+//struct  Transaction1;
+
+//void add(double*, const Transaction1*); 
 
 

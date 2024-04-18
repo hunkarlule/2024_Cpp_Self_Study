@@ -2,14 +2,14 @@
 // One Definition Rule
 
 #include <iostream>
-#include "main.h"        // prototype for add()
-#include "Transaction.h" // prototypes for enter() and display()
+#include "main1.h"        // prototype for add()
+#include "Transaction1.h" // prototypes for enter() and display()
 using namespace std;
 
 int main() {
     int i;
     double balance = 0.0;
-    Transaction tr;
+    Transaction1 tr;
 
     for (i = 0; i < NO_TRANSACTIONS; i++) {
         enter(&tr);
