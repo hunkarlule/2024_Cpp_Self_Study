@@ -48,15 +48,6 @@ this is equal to &c
 */
 
 
-/*
-Assigning to the Current Object
-To copy the values of the instance variables of one object into those of 
-the current object, we dereference the keyword and use *this as the 
-left operand in an assignment expression:
-
-*this = ...;
-*/
-
 
 const int NG = 20;
 class Student {
@@ -67,17 +58,10 @@ public:
 	Student();
 	Student(int studentNo, const float* studentGrades, int numOfGrades); // 3-argument constrcutor.
 	~Student(); // destructor prototype decleration
-	void read();
 	void copyFrom(const Student& src);
 	void set(int studentNo, const float* studentGrades, int numOfGrades);
 	//void display() const; // due to const display can not change Student object.
-	//Student display() const; // we want to return Student object from display instead of void.
-
-	// The const qualifier on the return type prevents client code 
-	// from placing the call to the member function on the left side of 
-	// an assignment operator and thereby enabling a change to the instance 
-	// variables themselves.
-	const Student& display() const; // we want to return const Student&  from display instead of void.
+	Student display() const; // we want to return Student object from display instead of void.
 };
 
 
@@ -99,31 +83,7 @@ public:
 //	}
 //}
 
-//Student Student::display() const
-//{
-//	if (no > 0) {
-//		cout << no << ":\n";
-//		cout.setf(ios::fixed);
-//		cout.precision(2);
-//		for (int i = 0; i < ng; i++) {
-//			cout.width(6);
-//			cout << grade[i] << endl;
-//		}
-//		cout.unsetf(ios::fixed);
-//		cout.precision(6);
-//	}
-//	else {
-//		cout << "no data available" << endl;
-//	}
-//
-//	// returns a copy of its host object / current object, we write:
-//	// because this is a speacial pointer that points the current object(the object 
-//	// that the function are called on). So if we dereference that pointer 
-//	// like this: *this ===> then we have the current object in our hands.
-//	return *this; 
-//}
-
-const Student& Student::display() const
+Student Student::display() const
 {
 	if (no > 0) {
 		cout << no << ":\n";
@@ -144,7 +104,7 @@ const Student& Student::display() const
 	// because this is a speacial pointer that points the current object(the object 
 	// that the function are called on). So if we dereference that pointer 
 	// like this: *this ===> then we have the current object in our hands.
-	return *this;
+	return *this; 
 }
 
 Student::Student()
@@ -163,35 +123,6 @@ Student::Student(int studentNo, const float* studentGrades, int numOfGrades)
 Student::~Student()
 {
 	cout << "In destructor for " << no << endl;
-}
-
-/*
-Since the temporary object (temp) and the current object are 
-instances of the same class, this member function can access each 
-object's instance variables directly.
-*/
-void Student::read()
-{
-	int no;          // will hold the student number
-	int ng;          // will hold the number of grades
-	float grade[NG]; // will hold the grades
-
-	// get data from console
-	cout << "Enter student number: ";
-	cin >> no;
-	cout << "Enter number of grades: ";
-	cin >> ng;
-	for (int i = 0; i < ng; i++) {
-		cout << "Enter student grade: ";
-		cin >> grade[i];
-	}
-
-	// constrcut the temp object
-	Student temp(no, grade, ng);
-	
-	if (temp.no != 0) { // if data is valid, the student number is non-zero
-		*this = temp; // copy the temporary object into the current object
-	}
 }
 
 void Student::copyFrom(const Student& src)
@@ -228,11 +159,10 @@ void Student::set(int studentNo, const float* studentGrades, int numberOfGrades)
 
 int main() {
 	float gh[] = { 89.4f, 67.8f, 45.5f };
-	Student harry(1234, gh, 3);
-	harry.display();
+	Student harry(1234, gh, 3), backup;
 
-	harry.read();
-	harry.display();
+	backup = harry.display();
+	backup.display();
 
 	return 0;
 }

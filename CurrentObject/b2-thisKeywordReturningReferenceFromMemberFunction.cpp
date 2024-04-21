@@ -49,12 +49,13 @@ this is equal to &c
 
 
 /*
-Assigning to the Current Object
-To copy the values of the instance variables of one object into those of 
-the current object, we dereference the keyword and use *this as the 
-left operand in an assignment expression:
+Reference to the Current Object
+We can improve this definition of display() by returning an unmodifiable 
+reference to the current object rather than a copy of the object. This would 
+improve performance if the object was large, since copying all of its instance 
+variables would be compute intensive. Returning a reference only copies 
+the object's address, which is typically a 4-byte operation:
 
-*this = ...;
 */
 
 
@@ -67,7 +68,6 @@ public:
 	Student();
 	Student(int studentNo, const float* studentGrades, int numOfGrades); // 3-argument constrcutor.
 	~Student(); // destructor prototype decleration
-	void read();
 	void copyFrom(const Student& src);
 	void set(int studentNo, const float* studentGrades, int numOfGrades);
 	//void display() const; // due to const display can not change Student object.
@@ -165,35 +165,6 @@ Student::~Student()
 	cout << "In destructor for " << no << endl;
 }
 
-/*
-Since the temporary object (temp) and the current object are 
-instances of the same class, this member function can access each 
-object's instance variables directly.
-*/
-void Student::read()
-{
-	int no;          // will hold the student number
-	int ng;          // will hold the number of grades
-	float grade[NG]; // will hold the grades
-
-	// get data from console
-	cout << "Enter student number: ";
-	cin >> no;
-	cout << "Enter number of grades: ";
-	cin >> ng;
-	for (int i = 0; i < ng; i++) {
-		cout << "Enter student grade: ";
-		cin >> grade[i];
-	}
-
-	// constrcut the temp object
-	Student temp(no, grade, ng);
-	
-	if (temp.no != 0) { // if data is valid, the student number is non-zero
-		*this = temp; // copy the temporary object into the current object
-	}
-}
-
 void Student::copyFrom(const Student& src)
 {
 	no = src.no; // copy data from one object to another
@@ -228,11 +199,10 @@ void Student::set(int studentNo, const float* studentGrades, int numberOfGrades)
 
 int main() {
 	float gh[] = { 89.4f, 67.8f, 45.5f };
-	Student harry(1234, gh, 3);
-	harry.display();
+	Student harry(1234, gh, 3), backup;
 
-	harry.read();
-	harry.display();
+	backup = harry.display();
+	backup.display();
 
 	return 0;
 }
